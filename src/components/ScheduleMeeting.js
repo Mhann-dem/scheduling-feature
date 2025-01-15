@@ -96,11 +96,10 @@ const ScheduleMeeting = ({ onClose, onSchedule }) => {
       setError('Failed to schedule the meeting. Please try again.');
     }
   };
-  
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg w-full max-w-md p-6">
+      <div className="bg-white rounded-lg w-full max-w-lg p-6">
         {/* Modal Header */}
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-gray-900 flex items-center">
@@ -112,8 +111,8 @@ const ScheduleMeeting = ({ onClose, onSchedule }) => {
         </div>
 
         {/* Meeting Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-gray-100 p-4 rounded-lg">
             <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
               <User className="w-4 h-4 mr-1" />
               Meeting Title
@@ -128,7 +127,7 @@ const ScheduleMeeting = ({ onClose, onSchedule }) => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="bg-gray-100 p-4 rounded-lg grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
                 <Calendar className="w-4 h-4 mr-1" />
@@ -172,7 +171,7 @@ const ScheduleMeeting = ({ onClose, onSchedule }) => {
             </div>
           </div>
 
-          <div>
+          <div className="bg-gray-100 p-4 rounded-lg">
             <label className="block text-sm font-medium text-gray-700 mb-1">Add Participants</label>
             <div className="flex space-x-2">
               <input
@@ -192,7 +191,7 @@ const ScheduleMeeting = ({ onClose, onSchedule }) => {
             </div>
             <ul className="mt-2 space-y-1">
               {formData.participants.map((email, index) => (
-                <li key={index} className="flex justify-between items-center">
+                <li key={index} className="flex justify-between items-center bg-white p-2 rounded-lg">
                   <span>{email}</span>
                   <button
                     type="button"

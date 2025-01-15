@@ -169,8 +169,12 @@ This project is licensed under the [MIT License](LICENSE).
 
 
 
-![alt Application Images](image.png)
+!![Home Screen](image-3.png)
 
-![alt Dashboard Image](image-1.png)
+![When Editing a meeting](image-5.png)
 
-![alt Schedule Button Image](image-2.png)
+![Dashboard Image](image-1.png)
+
+![Schedule Button Image](image-2.png)
+
+![Home Screen Footer](image-4.png)

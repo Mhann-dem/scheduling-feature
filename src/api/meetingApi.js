@@ -81,14 +81,13 @@ export const deleteMeeting = async (meetingId) => {
  * @returns {Promise<Object>} Updated meeting
  */
 
-export const updateMeeting = async (id, meetingData) => {
+export const updateMeeting = async (id, updatedData) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/meetings/${id}`, {
+    console.log(`Updating meeting with ID: ${id}`, updatedData); // Debugging log
+    const response = await fetch(`${API_BASE_URL}/meetings/${id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(meetingData),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedData),
     });
 
     if (!response.ok) {
@@ -97,11 +96,11 @@ export const updateMeeting = async (id, meetingData) => {
     }
 
     return await response.json();
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.error('Error in updateMeeting:', err.message);
+    throw err;
   }
 };
-
 
 export const fetchMeetings = async () => {
   try {

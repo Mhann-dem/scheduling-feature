@@ -71,30 +71,26 @@ const Dashboard = () => {
     }
   };
 
-  const handleUpdate = async (updatedMeeting) => {
+  const handleUpdate = async (id, updatedData) => {
     try {
-      setIsLoading(true);
-      console.log('Sending update for meeting:', updatedMeeting);
-      
-      const response = await updateMeeting(updatedMeeting.id, updatedMeeting);
-      console.log('Received updated meeting:', response);
-      
-      setMeetings(prevMeetings => 
-        prevMeetings.map(meeting => 
-          meeting.id === updatedMeeting.id ? response : meeting
+      console.log('Sending update request for meeting:', id, updatedData); // Debugging log
+      const updatedMeeting = await updateMeeting(id, updatedData);
+      console.log('Meeting updated successfully:', updatedMeeting); // Debugging log
+  
+      // Update the state with the new meeting data
+      setMeetings((prevMeetings) =>
+        prevMeetings.map((meeting) =>
+          meeting.id === id ? updatedMeeting : meeting
         )
       );
-      
-      showNotification('Meeting successfully updated');
-      return response;
-    } catch (error) {
-      console.error('Failed to update meeting:', error);
+  
+      showNotification('Meeting updated successfully!');
+    } catch (err) {
+      console.error('Failed to update meeting:', err.message);
       setError('Failed to update meeting. Please try again.');
-      throw error;
-    } finally {
-      setIsLoading(false);
     }
   };
+  
 
   const handleEdit = (meeting) => {
     setEditingMeeting(meeting);

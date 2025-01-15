@@ -1,70 +1,168 @@
-# Getting Started with Create React App
+# Scheduling Feature Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Frontend
 
-## Available Scripts
+### Description
+The frontend of the Scheduling Feature Project is built using React and provides a responsive user interface for creating, managing, and viewing meetings. Users can:
+- Schedule new meetings.
+- Update or cancel existing meetings.
+- Manage participants with an intuitive interface.
 
-In the project directory, you can run:
+### Tech Stack
+- **React**: Frontend framework
+- **Tailwind CSS**: Styling
+- **Material UI**: UI components
+- **Lucide-react**: Icons
 
-### `npm start`
+### Folder Structure
+```plaintext
+src/
+├── components/
+│   ├── Dashboard.js       # Main dashboard component
+│   ├── ScheduleMeeting.js # Form for scheduling meetings
+│   ├── MeetingCard.js     # Display individual meetings
+├── api/
+│   ├── meetingApi.js      # API integration for backend
+├── App.js                 # Main application component
+├── index.js               # Entry point
+├── index.css              # Global styles
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/scheduling-feature-frontend.git
+   cd scheduling-feature-frontend
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### `npm test`
+3. Create a `.env` file in the root directory and add the following:
+   ```plaintext
+   REACT_APP_API_BASE_URL=http://localhost:5000/api
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-### `npm run build`
+5. Open your browser and navigate to:
+   ```plaintext
+   http://localhost:3000
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Available Scripts
+- `npm start`: Runs the app in development mode.
+- `npm run build`: Builds the app for production.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Backend
 
-### `npm run eject`
+### Description
+The backend of the Scheduling Feature Project is built using Node.js and Express. It provides RESTful APIs for managing meetings and integrates with a MySQL database.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Tech Stack
+- **Node.js**: Backend runtime
+- **Express.js**: Web framework
+- **MySQL**: Database
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Folder Structure
+```plaintext
+src/
+├── config/
+│   ├── dbConfig.js        # Database configuration
+├── controllers/
+│   ├── meetingController.js # API business logic
+├── models/
+│   ├── meetingModel.js    # Database queries
+├── routes/
+│   ├── meetingRoutes.js   # API routes
+├── app.js                 # Main server file
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/scheduling-feature-backend.git
+   cd scheduling-feature-backend
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. Create a `.env` file in the root directory and add the following:
+   ```plaintext
+   DB_HOST=your-database-host
+   DB_USER=your-database-username
+   DB_PASSWORD=your-database-password
+   DB_NAME=your-database-name
+   PORT=5000
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Start the server:
+   ```bash
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. Test the API using Postman or curl:
+   ```http
+   GET http://localhost:5000/api/meetings
+   ```
 
-### Code Splitting
+### Database Setup
+1. Create the database and table:
+   ```sql
+   CREATE DATABASE scheduling;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   CREATE TABLE meetings (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       title VARCHAR(255) NOT NULL,
+       date DATE NOT NULL,
+       time TIME NOT NULL,
+       duration INT NOT NULL,
+       participants TEXT NOT NULL,
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+   ```
 
-### Analyzing the Bundle Size
+### Available Scripts
+- `npm start`: Starts the server in production mode.
+- `npm run dev`: Starts the server in development mode with live reloading.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### API Endpoints
+| Method | Endpoint            | Description                 |
+|--------|---------------------|-----------------------------|
+| GET    | `/api/meetings`     | Fetch all meetings          |
+| POST   | `/api/meetings`     | Create a new meeting        |
+| PUT    | `/api/meetings/:id` | Update an existing meeting  |
+| DELETE | `/api/meetings/:id` | Delete a meeting            |
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contribution Guidelines
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Description of changes"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the [MIT License](LICENSE).
